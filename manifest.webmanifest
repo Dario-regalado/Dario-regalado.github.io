@@ -1,0 +1,12 @@
+{
+  "name": "Vanesa's Peluqueria",
+  "short_name": "Vanesas Pelu",
+  "description": "Peluqueria en La Guancha: cortes, color, tratamientos y peinados para eventos.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f7f2eb",
+  "theme_color": "#c65a33",
+  "lang": "es",
+  "icons": []
+}
