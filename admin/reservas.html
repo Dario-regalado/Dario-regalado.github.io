@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../fotos/logo.ico" type="image/x-icon" />
+  <title>Reservas - Vanesa's Peluqueria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
+    }
+  }
+  </script>
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="container admin-header-inner">
+      <a class="brand" href="dashboard.html">Vanesa's Peluqueria</a>
+      <nav class="admin-nav">
+        <a href="dashboard.html" class="btn-secondary btn-sm">Dashboard</a>
+        <button id="logout-btn" class="btn btn-secondary" type="button">Cerrar sesion</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-main container">
+    <div class="page-header">
+      <h1 class="section-title" style="margin-bottom:0">Reservas</h1>
+      <button id="nueva-reserva" class="btn btn-primary" type="button">+ Nueva reserva</button>
+    </div>
+
+    <div class="reservas-container">
+      <div class="table-wrapper">
+        <table class="reservas-table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Cliente</th>
+              <th>Telefono</th>
+              <th>Servicio</th>
+              <th>Observaciones</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="reservas-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal" id="form-modal" style="display:none">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <h2 id="modal-title">Nueva reserva</h2>
+      <form id="reserva-form" class="crud-form">
+        <label for="nombre_cliente">Nombre del cliente *</label>
+        <input type="text" id="nombre_cliente" required />
+
+        <label for="telefono">Telefono</label>
+        <input type="tel" id="telefono" />
+
+        <label for="servicio_id">Servicio *</label>
+        <select id="servicio_id" required></select>
+
+        <label for="fecha">Fecha *</label>
+        <input type="date" id="fecha" required />
+
+        <label for="horario_inicio">Hora *</label>
+        <input type="time" id="horario_inicio" required />
+
+        <label for="observaciones">Observaciones</label>
+        <textarea id="observaciones" rows="3"></textarea>
+
+        <div class="form-actions">
+          <button type="button" id="cancel-btn" class="btn btn-secondary">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Crear reserva</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="delete-modal" style="display:none">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content modal-sm">
+      <h2>Eliminar reserva</h2>
+      <p>¿Estas segura de que quieres eliminar esta reserva?</p>
+      <div class="form-actions">
+        <button id="cancel-delete" class="btn btn-secondary" type="button">Cancelar</button>
+        <button id="confirm-delete" class="btn" style="background:#b91c1c;color:#fff;border-color:#b91c1c" type="button">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Vanesa's Peluqueria - Panel de administracion</p>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/admin-reservas.js?v=4"></script>
+</body>
+</html>

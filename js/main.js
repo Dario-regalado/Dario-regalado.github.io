@@ -2,11 +2,9 @@ const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector("#main-nav");
 const yearNode = document.querySelector("#year");
 
-if ("serviceWorker" in navigator) {
+if ("serviceWorker" in navigator && !location.hostname.includes("localhost") && !location.hostname.includes("127.0.0.1")) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("/sw.js").catch(() => {
-      // Ignore SW registration issues in unsupported/private contexts.
-    });
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
   });
 }
 

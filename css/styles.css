@@ -311,6 +311,17 @@ img {
   padding: 1.4rem 0 2rem;
 }
 
+.admin-link {
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0.5;
+  font-size: 0.8rem;
+}
+.admin-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
 :focus-visible {
   outline: 3px solid var(--ring);
   outline-offset: 2px;

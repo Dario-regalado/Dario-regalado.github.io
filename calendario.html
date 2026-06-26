@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Calendario de citas - Vanesa's Peluqueria" />
+  <meta name="theme-color" content="#c65a33" />
+  <title>Calendario - Vanesa's Peluqueria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="fotos/logo.ico" type="image/x-icon" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/calendar.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Volver al inicio">Vanesa's Peluqueria</a>
+
+      <nav class="nav" aria-label="Navegacion">
+        <a href="index.html#servicios">Servicios</a>
+        <a href="index.html#hombres-mujeres">Hombres/Mujeres</a>
+        <a href="index.html#resenas">Resenas</a>
+        <a href="index.html#contacto">Contacto</a>
+        <a href="calendario.html" aria-current="page">Calendario</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section class="section">
+      <div class="container">
+        <h1 class="section-title">Calendario de Citas</h1>
+
+        <div class="calendar-layout">
+          <div class="calendar-container">
+            <div class="calendar-header">
+              <button class="calendar-nav" id="prev-month" type="button" aria-label="Mes anterior">&larr;</button>
+              <h2 id="month-year"></h2>
+              <button class="calendar-nav" id="next-month" type="button" aria-label="Mes siguiente">&rarr;</button>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+          </div>
+
+          <div class="appointments-panel">
+            <h3>Reservas</h3>
+            <p class="day-label" id="day-label">Selecciona un día para ver las reservas</p>
+            <div id="day-appointments"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Vanesa's Peluqueria - <span id="year"></span>. Todos los derechos reservados. | <a href="admin/" class="admin-link">Admin</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script type="module" src="js/supabase.js"></script>
+  <script type="module" src="js/calendar.js?v=10"></script>
+</body>
+</html>

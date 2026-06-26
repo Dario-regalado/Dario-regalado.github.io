@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../fotos/logo.ico" type="image/x-icon" />
+  <title>Dashboard - Vanesa's Peluqueria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/admin.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2"
+    }
+  }
+  </script>
+</head>
+<body class="admin-page">
+  <header class="admin-header">
+    <div class="container admin-header-inner">
+      <a class="brand" href="dashboard.html">Vanesa's Peluqueria</a>
+      <nav class="admin-nav">
+        <span id="user-email" class="admin-user"></span>
+        <button id="logout-btn" class="btn btn-secondary" type="button">Cerrar sesion</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="admin-main container">
+    <h1 class="section-title">Panel de Administracion</h1>
+
+    <div class="dashboard-grid">
+      <a href="calendario.html" class="dashboard-card">
+        <h2>Calendario</h2>
+        <p>Ver citas en el calendario</p>
+      </a>
+      <a href="reservas.html" class="dashboard-card">
+        <h2>Reservas</h2>
+        <p>Crear, editar y eliminar citas</p>
+      </a>
+      <a href="#" class="dashboard-card">
+        <h2>Servicios</h2>
+        <p>Gestionar servicios (proximamente)</p>
+      </a>
+    </div>
+  </main>
+
+  <script type="module">
+    import { requireAuth, logout, getSession } from '../js/auth.js';
+
+    (async () => {
+      try {
+        const session = await requireAuth()
+        if (session) {
+          document.getElementById('user-email').textContent = session.user.email
+        }
+      } catch (err) {
+        console.error('Dashboard error:', err)
+      }
+    })()
+
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+      try {
+        await logout()
+        window.location.replace('/admin/')
+      } catch (err) {
+        console.error('Logout error:', err)
+      }
+    })
+  </script>
+</body>
+</html>
