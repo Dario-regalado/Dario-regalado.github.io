@@ -1,4 +1,4 @@
-const CACHE_NAME = "pelu-v2";
+const CACHE_NAME = "pelu-v3";
 const APP_SHELL = [
   "/",
   "/index.html",
@@ -17,7 +17,11 @@ const APP_SHELL = [
   "/admin/reservas.html",
   "/js/admin-reservas.js",
   "/admin/calendario.html",
-  "/js/calendar-admin.js"
+  "/js/calendar-admin.js",
+  "/admin/manifest.webmanifest",
+  "/fotos/icon-192.png",
+  "/fotos/icon-512.png",
+  "/fotos/logo.ico"
 ];
 
 self.addEventListener("install", (event) => {

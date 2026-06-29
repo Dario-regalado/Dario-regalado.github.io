@@ -40,11 +40,15 @@ function renderServicioSelect(selectEl, selectedId) {
 }
 
 async function cargarReservas() {
+  const hoy = new Date()
+  const todayStr = `${hoy.getFullYear()}-${String(hoy.getMonth() + 1).padStart(2, '0')}-${String(hoy.getDate()).padStart(2, '0')}`
+
   const { data, error } = await supabaseClient
     .from('reservas')
     .select('*, servicios(nombre)')
-    .order('fecha', { ascending: false })
-    .order('horario_inicio', { ascending: false })
+    .gte('fecha', todayStr)
+    .order('fecha', { ascending: true })
+    .order('horario_inicio', { ascending: true })
   if (error) throw error
   reservas = data || []
 }

@@ -318,36 +318,84 @@
   margin-top: 1.2rem;
 }
 
-@media (max-width: 700px) {
-  .reservas-table thead {
-    display: none;
+  @media (max-width: 700px) {
+    .reservas-table thead {
+      display: none;
+    }
+
+    .reservas-table tr {
+      display: block;
+      padding: 1rem;
+      border-bottom: 1px solid rgba(31, 26, 21, 0.08);
+    }
+
+    .reservas-table td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.35rem 0;
+      border: none;
+    }
+
+    .reservas-table td::before {
+      content: attr(data-label);
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .actions-cell {
+      justify-content: flex-end;
+      padding-top: 0.5rem;
+    }
   }
 
-  .reservas-table tr {
-    display: block;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(31, 26, 21, 0.08);
-  }
+  @media (max-width: 480px) {
+    .admin-header-inner {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.5rem;
+      padding-top: 0.6rem;
+      padding-bottom: 0.6rem;
+    }
 
-  .reservas-table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.35rem 0;
-    border: none;
-  }
+    .admin-nav {
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
 
-  .reservas-table td::before {
-    content: attr(data-label);
-    font-weight: 700;
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-  }
+    .admin-user {
+      font-size: 0.75rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-  .actions-cell {
-    justify-content: flex-end;
-    padding-top: 0.5rem;
+    .btn-sm {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.5rem;
+    }
+
+    .page-header {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .page-header .btn-primary {
+      width: 100%;
+      text-align: center;
+    }
+
+    .dashboard-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .admin-main {
+      padding: 1rem 0;
+    }
+
+    .modal-content {
+      padding: 1.25rem;
+    }
   }
-}

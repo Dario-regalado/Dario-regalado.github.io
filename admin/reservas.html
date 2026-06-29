@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="../fotos/logo.ico" type="image/x-icon" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="../fotos/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <title>Reservas - Vanesa's Peluqueria</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,6 +31,7 @@
       <nav class="admin-nav">
         <a href="dashboard.html" class="btn-secondary btn-sm">Dashboard</a>
         <a href="../index.html" class="btn-secondary btn-sm">Volver al sitio</a>
+        <button id="install-btn" class="btn-secondary btn-sm" style="display:none" type="button">Instalar app</button>
         <button id="logout-btn" class="btn btn-secondary" type="button">Cerrar sesion</button>
       </nav>
     </div>
@@ -107,6 +112,11 @@
     </div>
   </footer>
 
-  <script type="module" src="../js/admin-reservas.js?v=4"></script>
+  <script>
+    let installPrompt = null;
+    window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); installPrompt = e; document.getElementById('install-btn').style.display = '' });
+    document.getElementById('install-btn').addEventListener('click', async () => { if (installPrompt) { installPrompt.prompt(); await installPrompt.userChoice; installPrompt = null; document.getElementById('install-btn').style.display = 'none' } })
+  </script>
+  <script type="module" src="../js/admin-reservas.js?v=5"></script>
 </body>
 </html>

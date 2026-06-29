@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="../fotos/logo.ico" type="image/x-icon" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="../fotos/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <title>Admin - Vanesa's Peluqueria</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,12 +28,12 @@
     <div class="login-card">
       <h1>Vanesa's Peluqueria</h1>
       <p class="login-subtitle">Acceso administrador</p>
-      <form id="login-form" class="login-form" method="POST" autocomplete="off">
+      <form id="login-form" class="login-form" method="POST" autocomplete="off" novalidate>
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" required autocomplete="email" placeholder="admin@ejemplo.com" />
+        <input type="email" id="email" name="email" required maxlength="254" autocomplete="off" spellcheck="false" inputmode="email" placeholder="admin@ejemplo.com" />
 
         <label for="password">Contraseña</label>
-        <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="••••••••" />
+        <input type="password" id="password" name="password" required maxlength="128" autocomplete="new-password" spellcheck="false" placeholder="••••••••" />
 
         <p id="login-error" class="form-error" style="display:none"></p>
 
@@ -43,19 +47,22 @@
     import { login, redirectIfLoggedIn } from '../js/auth.js'
 
     redirectIfLoggedIn().catch(() => {})
-    console.log('Login page loaded')
 
     const form = document.getElementById('login-form')
     const emailInput = document.getElementById('email')
     const passwordInput = document.getElementById('password')
     const errorEl = document.getElementById('login-error')
 
+    function sanitize(v) {
+      return v.replace(/[\0\x08\x0B\x0C\x0E\x1F]/g, '').trim()
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault()
       errorEl.style.display = 'none'
       errorEl.textContent = ''
 
-      const email = emailInput.value.trim()
+      const email = sanitize(emailInput.value)
       const password = passwordInput.value
 
       if (!email || !password) {
@@ -73,10 +80,7 @@
         window.location.href = '/admin/dashboard.html'
       } catch (err) {
         console.error('Login error:', err)
-        const msg = err.message || String(err)
-        errorEl.textContent = msg.includes('Invalid login credentials')
-          ? 'Email o contraseña incorrectos'
-          : `Error: ${msg}`
+        errorEl.textContent = 'Email o contraseña incorrectos'
         errorEl.style.display = 'block'
         submitBtn.disabled = false
         submitBtn.textContent = 'Entrar'
